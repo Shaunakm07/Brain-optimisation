@@ -70,9 +70,7 @@ pip install -r requirements.txt
 # From GitHub (official)
 pip install git+https://github.com/facebookresearch/tribev2.git
 
-# Or if available on PyPI
-pip install tribev2
-```
+
 
 ### 4. Verify Installation
 

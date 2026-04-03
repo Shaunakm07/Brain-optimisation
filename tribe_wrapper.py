@@ -36,8 +36,10 @@ class TribeV2Wrapper:
             self.TribeModel = TribeModel
             logger.info(f"Loading TRIBE V2 model: {model_name}")
             self.model = TribeModel.from_pretrained(model_name)
-            self.model.to(device)
-            self.model.eval()
+            if hasattr(self.model, 'to'):
+                self.model.to(device)
+            if hasattr(self.model, 'eval'):
+                self.model.eval()
         except ImportError:
             logger.warning(
                 "TRIBE V2 not installed. Using mock model for demonstration.\n"
