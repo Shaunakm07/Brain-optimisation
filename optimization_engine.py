@@ -3,6 +3,7 @@ Optimization Engine
 Uses PPO or evolutionary strategies to optimize stimuli for brain activation
 """
 
+import os
 import numpy as np
 import torch
 from typing import Dict, List, Tuple, Optional, Callable
@@ -368,10 +369,12 @@ class LatentOptimizer:
             Image.fromarray(stimulus).save(path)
         
         elif modality == "video":
+            if stimulus.ndim == 5:
+                stimulus = stimulus[0]  # remove batch dim: (1, T, H, W, 3) -> (T, H, W, 3)
             if stimulus.max() <= 1.0:
                 stimulus = (stimulus * 255).astype(np.uint8)
             path = f"./temp_stimuli/video_{np.random.randint(1000000)}.mp4"
-            imageio.mimsave(path, stimulus, fps=30)
+            imageio.mimsave(path, [stimulus[i] for i in range(len(stimulus))], fps=30)
         
         elif modality == "audio":
             path = f"./temp_stimuli/audio_{np.random.randint(1000000)}.wav"

@@ -1,0 +1,17 @@
+{
+  "experiment": "face_region_optimization",
+  "timestamp": "20260403_223412",
+  "final_reward": -Infinity,
+  "mean_reward": -Infinity,
+  "num_iterations": 5,
+  "rewards_over_time": [
+    -Infinity,
+    -Infinity,
+    -Infinity,
+    -Infinity,
+    -Infinity
+  ],
+  "target_roi": "Fusiform Face Area",
+  "modality": "video",
+  "optimization_method": "ppo"
+}

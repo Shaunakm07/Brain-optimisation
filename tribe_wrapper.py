@@ -77,7 +77,7 @@ class TribeV2Wrapper:
         
         try:
             # Create events dataframe from video
-            df = self.model.get_events_dataframe(video_path=video_path, fps=fps)
+            df = self.model.get_events_dataframe(video_path=video_path)
             logger.info(f"Video events shape: {df.shape}")
             
             # Run prediction

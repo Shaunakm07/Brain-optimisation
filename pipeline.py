@@ -337,8 +337,11 @@ class NeuroStimPipeline:
             f.write("-" * 70 + "\n")
             for key, value in self.config.items():
                 f.write(f"\n{key}:\n")
-                for k, v in value.items():
-                    f.write(f"  {k}: {v}\n")
+                if isinstance(value, dict):
+                    for k, v in value.items():
+                        f.write(f"  {k}: {v}\n")
+                else:
+                    f.write(f"  {value}\n")
         
         logger.info(f"Report saved to: {report_path}")
 

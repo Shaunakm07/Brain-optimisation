@@ -37,15 +37,15 @@ generator:
   type: "stable_diffusion"  # options: stable_diffusion, diffusion_video, audio_spectrogram
   model_name: "runwayml/stable-diffusion-v1-5"
   device: "cuda"
-  num_inference_steps: 50
+  num_inference_steps: 10
   guidance_scale: 7.5
   seed: 42
 
 # Optimization parameters
 optimization:
   method: "ppo"  # options: ppo, cma_es, evolution_strategies
-  num_iterations: 100
-  population_size: 8
+  num_iterations: 5
+  population_size: 2
   learning_rate: 0.001
   entropy_coef: 0.01
   clip_ratio: 0.2
