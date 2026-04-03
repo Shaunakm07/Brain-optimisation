@@ -1,0 +1,43 @@
+# NeuroStim Optimization Engine Requirements
+
+# Core ML frameworks
+torch>=2.0.0
+torchvision>=0.15.0
+
+# TRIBE V2 (official package from Facebook Research)
+# GitHub: https://github.com/facebookresearch/tribev2
+tribev2>=0.1.0
+
+# Diffusion models for stimulus generation
+diffusers>=0.20.0
+transformers>=4.30.0
+accelerate>=0.20.0
+
+# Video and audio processing
+opencv-python>=4.7.0
+imageio>=2.31.0
+imageio-ffmpeg>=0.4.8
+librosa>=0.10.0
+soundfile>=0.12.1
+scipy>=1.10.0
+
+# Optimization algorithms
+cma>=3.15  # CMA-ES optimizer
+numpy>=1.24.0
+
+# Visualization
+matplotlib>=3.7.0
+seaborn>=0.12.0
+plotly>=5.14.0
+
+# Configuration and utilities
+pyyaml>=6.0
+tqdm>=4.65.0
+pillow>=9.5.0
+
+# Development/logging
+tensorboard>=2.13.0
+wandb>=0.15.0  # For experiment tracking
+
+# Optional: GPU acceleration
+# torch-cuda-toolkit  (install separately based on your CUDA version)

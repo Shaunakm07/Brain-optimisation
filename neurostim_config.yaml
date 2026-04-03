@@ -1,0 +1,89 @@
+# NeuroStim Optimization Engine - Configuration
+# Using TRIBE V2 as simulated fMRI brain model
+
+# Experiment setup
+experiment:
+  name: "face_region_optimization"
+  description: "Optimize visual stimuli to maximize activation in face-selective regions (FFA)"
+  modality: "video"  # options: video, audio, image, text
+  duration_frames: 60
+  fps: 30
+
+# Target ROI (Region of Interest)
+target_roi:
+  name: "Fusiform Face Area"
+  hemisphere: "bilateral"
+  # Vertex indices for FFA (fsaverage surface ~20k vertices per hemisphere)
+  vertex_ranges:
+    left: [4500, 5200]
+    right: [24500, 25200]
+  activation_threshold: 0.5
+
+# Off-target ROIs (minimize activation)
+off_target_rois:
+  - name: "Visual Cortex V1"
+    vertex_ranges:
+      left: [0, 1000]
+      right: [20000, 21000]
+    weight: 0.1
+  - name: "Auditory Cortex"
+    vertex_ranges:
+      left: [8000, 9000]
+      right: [28000, 29000]
+    weight: 0.05
+
+# Generator model configuration
+generator:
+  type: "stable_diffusion"  # options: stable_diffusion, diffusion_video, audio_spectrogram
+  model_name: "runwayml/stable-diffusion-v1-5"
+  device: "cuda"
+  num_inference_steps: 50
+  guidance_scale: 7.5
+  seed: 42
+
+# Optimization parameters
+optimization:
+  method: "ppo"  # options: ppo, cma_es, evolution_strategies
+  num_iterations: 100
+  population_size: 8
+  learning_rate: 0.001
+  entropy_coef: 0.01
+  clip_ratio: 0.2
+  batch_size: 4
+
+# Reward function weights
+reward:
+  target_activation_weight: 1.0
+  off_target_suppression_weight: 0.3
+  energy_penalty_weight: 0.05
+  temporal_consistency_weight: 0.1
+  temporal_aggregation: "mean"  # options: mean, max, peak, integral
+
+# TRIBE V2 model settings
+tribe:
+  model_name: "facebook/tribev2"
+  device: "cuda"
+  batch_size: 4
+  cache_predictions: true
+  average_timesteps: true  # temporal pooling before reward
+
+# Visualization settings
+visualization:
+  save_frequency: 10  # save every N iterations
+  plot_brain_surface: true
+  plot_roi_timecourse: true
+  plot_stimulus_evolution: true
+  output_dir: "./outputs"
+
+# Logging
+logging:
+  level: "INFO"
+  save_checkpoints: true
+  checkpoint_dir: "./checkpoints"
+  tensorboard: true
+
+# Hardware
+hardware:
+  device: "cuda"
+  num_workers: 4
+  mixed_precision: true
