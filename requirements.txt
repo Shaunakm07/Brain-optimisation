@@ -4,10 +4,6 @@
 torch>=2.0.0
 torchvision>=0.15.0
 
-# TRIBE V2 (official package from Facebook Research)
-# GitHub: https://github.com/facebookresearch/tribev2
-tribev2>=0.1.0
-
 # Diffusion models for stimulus generation
 diffusers>=0.20.0
 transformers>=4.30.0
